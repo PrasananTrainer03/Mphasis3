@@ -1,0 +1,259 @@
+
+
+File Management : 
+_________________
+
+   -> NO security 
+
+   -> redundancy high 
+
+   -> No Proper Updates on Master document
+
+   -> Not able handle data polymorphisms. 
+
+DBMS (Database Management System) 
+
+Database : it is set of interrelated files, stored with min. 
+redundancy, to serve many users works concurrently. 
+
+DBMS : The software that which allows you to 
+	perform transactions on data like
+
+	(i) Adding New Data
+
+	(ii) Modifying already existing data
+
+	(iii) removing unwanted data 
+
+known as DBMS. 
+
+Objectives : 
+____________
+
+	-> Provides an efficient and convinient env, that which allows you to store and retreive data
+
+	-> Granting access on data to users based on their credentials. 
+
+Drawbacks : 
+____________
+
+
+(i) Data Redundancy
+
+(ii) Risk to Data Integrity 
+
+(iii) Data Isolation
+
+(iv) Difficult Access to Data 
+
+(v) Unsatisfactory Security Measures 
+
+
+Data Model : It is the description of the org. of data in the database. It also describes the relationship among the data and any constraints ;that have to be defined on data. 
+
+Data Models are classified into 2 types known as
+
+1) Object-based logical Model : Focuses on describing the data, and the relationship among the data and any constraints defined. 
+
+2) Record-based logical model : Focuses on describing the data structure and the access techniques in the DBMS. 
+
+Object-baed Logical model : 
+
+The ER model : It is based on the real world perception that comprises a collection of objects or entites and the relationships among the data. 
+
+
+Entity is a thing, that which can be identified. 
+
+Attribute : The property of given entity. 
+
+Relationship is an association among various entities. 
+
+There are various types of attributes as
+
+  Employ(Empno,Name,Gender,Email,PhoneNo,
+	Salary,GrossPay,NetPay,Tax,Pf)
+
+  -> Normal Attributes  : empno,Name,Gender
+
+  -> Derived Attributes : GrossPay,tax,Pf,netPay
+
+  -> MultiValued Attributes : Email, PhoneNo
+
+Types of relationships : 
+__________________________
+
+There are 3 types of relationships known as
+
+	(i) One-to-One
+
+	(ii) One-to-Many
+
+	(iii) Many-to-Many 
+
+Keys : A RDBMS uses associative addressing, that is it identifies and lcoates rows by value. The physical address is transparent to the user. Therefore, relational system require keys. 
+
+Employ(Empno,Name,Gender,Salary,AadharNo,SalDate,City) 
+
+1) Candidate : Any key that which uniquely identifies rows of a table known as candidate key. 
+			Empno, AadharNo
+
+2) Primary : One of the candidate key needs to be chosen as primary key based on priority. 
+			Empno
+
+3) Alternate : Any key, that which is candidate key but not primary key known as alternate key. 
+			AadharNo
+
+4) Composite : Any key that which uniquely identifies rows of table made up of more than one attribute
+		known as composite key. (Empno+SalDate) 
+
+5) Foreign Key 
+
+_________________________________________________________________________________
+
+How to display all records from Emp table. 
+
+select * from Emp;
+
+How to display all records from Dept table
+
+select * from Dept;
+
+Project Operator : Used to project only particular attributes. 
+
+-- Display Empno, Ename, job,sal,mgr from Emp table 
+
+select Empno, ename, Job, Sal, Mgr
+from emp;
+
+
+-- Restrict Operator : used to filter the table rows. 
+
+-- Display all records whose sal > 2500;
+
+select * from Emp where sal > 2500;
+
+-- Display info for whose Ename is 'SCOTT' 
+
+select * from Emp where Ename='SCOTT';
+
+
+-- Display info for whose empno is 7900
+
+select * from Emp where empno=7900;
+
+-- Display all records who works as CLERK (job is 'CLERK') 
+
+select * from Emp where job='CLERK';
+
+-- Between...AND : used to display values from start to end range.
+
+select * from Emp where sal between 1000 and 3000;
+
+select * from Emp where sal NOT between 1000 and 3000;
+
+-- IN Clause : Used to display particular column values
+
+display info whose Ename is SCOTT/FORD/KING
+
+
+select * from Emp where 
+ename in('SCOTT','FORD','KING');
+
+select * from Emp where 
+ename not in('SCOTT','FORD','KING');
+
+
+Display info whose job as MANAGER or ANALYST 
+
+select * from Emp where JOB IN('MANAGER','ANALYST');
+
+Order By : Used to display data w.r.t. Specific field(s) in 
+ascending or descending order. 
+
+select empno,ename,job,sal from Emp 
+order By ename;
+
+
+select Empno,Ename,job,sal,mgr from emp
+order by job,ename;
+
+select Empno,Ename,job,sal,mgr from emp
+order by job,ename desc;
+
+distinct : used to eliminate duplicate entries at runtime. 
+
+select distinct job from Emp;
+
+Write a query as display one column as manager as
+
+    if Job is CLERK then print name as 'Fahrana'
+    if job is ANALYST then print name as 'Abhishek'
+    if job is SALESMAN then print name as 'Nilesh'
+    if job is MANAGER then print name as 'Pavithra'
+
+else give 'No Manager'
+
+select empno,ename,job,sal from Emp;
+
+
+
+select empno,ename,job,sal,
+case job 
+   when 'CLERK' then 'Fahrana'
+   when 'ANALYST' then 'Abhishek'
+   WHEN 'SALESMAN' then 'Nilesh' 
+   WHEN 'MANAGER' then 'Pavithra'
+   else 'No Manager'
+end "PC" 
+ from Emp;
+
+
+
+Write a query as display one column as UpdSal as
+
+    if Job is CLERK then Add Sal by 1000
+    if job is ANALYST then Add sal by 1500
+    if job is SALESMAN then Add Sal by 1800
+    if job is MANAGER then Add Sal by 2000
+
+	else give Sal 
+
+
+select empno, ename, job, sal,
+case job
+   WHEN 'CLERK' THEN Sal+1000
+   WHEN 'ANALYST' THEN Sal+1500
+   WHEN 'SALESMAN' THEN Sal+1800
+   WHEN 'MANAGER' THEN SAL+2000
+   ELSE SAL
+end "UpdSal"
+from Emp;
+
+
+select empno,ename,job,sal,comm,
+case
+   WHEN COMM IS NULL THEN 0
+    else COMM
+end "UpdVal"
+from Emp;
+
+
+
+select empno,ename,job,sal,comm,
+case
+   WHEN COMM IS NULL THEN 0
+    else COMM
+end "UpdVal",
+CASE
+   WHEN COMM IS NULL THEN SAL
+    ELSE SAL+COMM
+END "TakeHome"
+from Emp;
+
+
+
+
+
+
+
+
