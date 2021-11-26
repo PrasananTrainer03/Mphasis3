@@ -1,0 +1,213 @@
+Group By : Used to generate summary reports. 
+
+Having : 
+
+Used to check the conditions on aggregate columns.
+
+Display all records from Emp table, who have 
+more than 1 employees in each job. 
+
+select job,count(*) from Emp
+group by job
+having count(*) > 1;
+
+Display all records from emp table, whose job
+total salary > 5000
+
+-- Display all records from Emp table, whose job is (Analyst or CLERK or Manager) 
+and having min 2 employess 
+
+select job,count(*) from Emp 
+where job in('ANALYST','CLERK','MANAGER')
+group by job
+having count(*) > 1;
+
+
+select job,count(*) from Emp 
+where job in('ANALYST','CLERK','MANAGER')
+group by job
+having count(*) > 1
+order by job desc;
+
+
+______________________________________________________________________________________
+
+Joins : Joins allows you to extract data from more than one table. There are various types of joins known as
+
+
+1) Inner Join : 
+	
+	Acts as an INTERSECT operator, used to extract only the common records from the given table. 
+
+    select Deptno,Dname,Empno,Ename,job,sal from Dept,Emp
+	where Dept.Deptno=Emp.Deptno;
+
+    SELECT
+	Dept.Deptno,Dname,Empno,Ename,job,sal
+    FROM Dept INNER JOIN Emp ON 
+    Dept.Deptno=Emp.Deptno;
+
+
+    select
+	D.Deptno,Dname,Empno,Ename,Job,Sal
+     from Dept D INNER JOIN Emp E 
+     ON D.DeptNo=E.DeptNo;
+
+    select C.CCODE,C.Name,C.Duration,C.Fee,
+	   F.FCode,F.Name,F.Qual
+     from Courses C INNER JOIN Course_Faculty CF 
+     ON C.CCODE=CF.CCODE 
+     INNER JOIN Faculty F ON 
+     F.FCODE=CF.FCODE;
+
+
+2) Outer Join : 
+
+There are various types of outer join as 
+
+	-> Left Outer Join
+
+		All records from the Left-side table, and matching records from the right side table. 
+	   if the child table values are not available, then it would be replaced with NULL.
+
+	    select
+	D.Deptno,Dname,Empno,Ename,Job,Sal
+     from Dept D LEFT JOIN Emp E 
+     ON D.DeptNo=E.DeptNo;
+
+	
+    select C.CCODE,C.Name,C.Duration,C.Fee,
+	   F.FCode,F.Name,F.Qual
+     from Courses C LEFT JOIN Course_Faculty CF 
+     ON C.CCODE=CF.CCODE 
+     LEFT JOIN Faculty F ON 
+     F.FCODE=CF.FCODE;
+
+
+	-> Right Outer Join : All records from the right-side table, and matching records from the left-side table known as Right-Outer Join. If any child table values are not avaialble, then it would be replaced with
+	NULL keyword. 
+
+	   select
+	D.Deptno,Dname,Empno,Ename,Job,Sal
+     from Dept D RIGHT JOIN Emp E 
+     ON D.DeptNo=E.DeptNo;
+
+	  select C.CCODE,C.Name,C.Duration,C.Fee,
+	   F.FCode,F.Name,F.Qual
+     	from Courses C RIGHT JOIN Course_Faculty CF 
+     	ON C.CCODE=CF.CCODE 
+     	RIGHT JOIN Faculty F ON 
+     	F.FCODE=CF.FCODE;
+
+	-> Full Outer Join : Displays all matching and unmatching records from both tables. 
+
+	   select
+	D.Deptno,Dname,Empno,Ename,Job,Sal
+     from Dept D FULL JOIN Emp E 
+     ON D.DeptNo=E.DeptNo;
+	
+	  select C.CCODE,C.Name,C.Duration,C.Fee,
+	   F.FCode,F.Name,F.Qual
+     	from Courses C FULL JOIN Course_Faculty CF 
+     	ON C.CCODE=CF.CCODE 
+     	FULL JOIN Faculty F ON 
+     	F.FCODE=CF.FCODE;
+
+
+self join : If a table joins with itself, known as self join. 
+
+
+select E1.Empno "Manager Code",E1.EName "Manager Name",
+  E2.Empno "Employ Code", E2.EName "Employ Name"
+from Emp E1 INNER JOIN Emp E2 
+ON E1.Empno=E2.Mgr;
+
+
+select E1.Empno "Manager Code",E1.EName "Manager Name",
+  E2.Empno "Employ Code", E2.EName "Employ Name"
+from Emp E1 RIGHT JOIN Emp E2 
+ON E1.Empno=E2.Mgr;
+
+Cross Join : Generates cartician product of given tables. 
+
+	Table A contains n records and Table B contains m records, then it produces (n*m) records. 
+
+
+Subquery : Sometimes, its not possible to extract data by using Single SQL Statement, to overcome this we 
+need the help of subquery. A subquery is a query, that which is having another query inside. The query which is inside known as Inner Query, the query which is outside konwn as outer query. 
+
+Every Time, the result of Inner Query will be send as input to the outer query. 
+
+-> Display the max. salary from Emp table. 
+
+select max(sal) from Emp; 
+
+-> Display Employ Name, who is getting max. salary 
+
+select ename from Emp where sal=max(sal);
+
+The query throws error, as group functions will not be allowed in where clause, then we need the help of 
+subquery. 
+
+select ename from Emp where sal=(select max(sal) from Emp);
+
+-> How to display the second max. salary 
+
+select max(sal) from Emp where sal < (select max(sal) from Emp);
+
+-> Display employee names, who is getting max. salary 
+
+select ename from emp where sal=(select max(sal) from Emp where sal < (select max(sal) from Emp));
+
+If subquery returns more than one value, then we can retrieve data by using operators. 
+
+ALL : Acts as AND operator. 
+
+ANY : OR Operator 
+
+Empno <> ALL(10,20,30) means 
+
+Empno <> 10 AND Empno <> 20 AND Empno <> 30 
+
+Empno <> ANY(10,20,30) means 
+
+Empno <> 10 OR Empno <> 20 OR Empno <> 30;
+
+--> Display Idle departments. 
+
+Which is dept table but not in Emp table 
+
+select * from Dept where deptno <> ALL(select DeptNo from Emp);
+
+Display Matching Departments in Dept and Emp Table 
+
+select * from Dept where Deptno = ANY(select Deptno from Emp);
+
+--> Display Idle Courses 
+
+means which exists in Coures table, but not in Course_faculty table 
+
+--> Display all running courses means which exists in both Course and Course_faculty table
+
+select * from Courses where ccode <> ALL(select ccode from Course_faculty);
+
+--> Display Idel Faculty names, means who are not taking any courses
+
+select * from Courses where CCODE = ANY(select CCODE from Course_Faculty);
+
+select * from Faculty where FCODE <> ALL(select Fcode from Course_Faculty);
+
+which exists in Faculty Table, but not in Course_Faculty table.
+
+select * from Faculty where FCODE = ANY(select Fcode from Course_Faculty);
+
+
+
+
+
+
+
+
+
+
+
