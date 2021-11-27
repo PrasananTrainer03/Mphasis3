@@ -1,0 +1,265 @@
+Types of Sql Commands 
+
+1) DDL (Data Definition Language) 
+
+	Create 
+
+	    Create Table table_name
+
+	    Create User User_name
+
+	Alter
+
+	   Used to modify the table structure, as we can add/modify/drop the 
+		table columns and constraints. 
+
+	Drop 
+
+	   Used to drop the database objects.  
+
+	Truncate 
+
+	    Used to delete all records from the table. 
+
+2) DML
+
+	Insert : used to add records to the table. 
+
+		Insert into table_name(field1,field2,field3....) 
+			values(value1,value2,value3...);
+
+	Update
+
+	Delete
+
+
+Data Types : 
+_____________
+
+	number
+	char
+	varchar2
+	datetime
+	date 
+	
+
+Employ(Empno,Name,Dept,Desig,basic)
+
+empno -> number
+name -> varchar2(30)
+dept -> varchar2(30)
+desig -> varchar2(30)
+basic -> number(9,2) 
+
+create table Employ
+(
+    empno number,
+    name varchar2(30),
+    dept varchar2(30), 
+    desig varchar2(30),
+    basic number(9,2)
+);
+
+insert into Employ(empno,name,dept,desig,basic)
+values(1,'Neha','Java','Programmer',99922);
+
+
+The above table, needs to implement the following
+constraints. 
+
+1) Empno primary key 
+2) Name cannot be null
+3) dept is either 'JAVA' or 'DOTNET' or 'ANGULAR' 
+5) Gender char(7) 'MALE' or 'FEMALE'
+4) desig is either 'PROGRAMMER' or 'DEVELOPER' or
+	 'TEAMLEAD'
+5) basic from 1000 to 50000
+
+drop table employ;
+
+create table Employ
+(
+   empno number
+   constraint pk_employ_empno primary key,
+   name varchar2(30) NOT NULL,
+   Gender char(7)
+   constraint chk_employ_gender check(gender in('MALE','FEMALE')),
+   Dept varchar2(30) 
+   constraint chk_employ_dept check(dept in('JAVA','DOTNET','ANGULAR')),
+   Desig varchar2(30)
+   constraint chk_employ_desig check(desig in('PROGRAMMER','DEVELOPER','TEAMLEAD')),
+   Basic number(9,2) 
+   constraint chk_employ_basic check(basic between 1000 and 50000)
+);
+
+Insert into Employ(Empno,Name,Gender,Dept,Desig,basic) 
+values(1,'Kushal','MALE','JAVA','PROGRAMMER',42244);
+
+Insert into Employ(Empno,Name,Gender,Dept,Desig,basic) 
+values(2,'Kushal','MALE','JAVA','PROGRAMMER',42244);
+
+
+Insert into Employ(Empno,Name,Gender,Dept,Desig,basic) 
+values(3,'Kushal','MALE','DOTNET','TEAMLEAD',45553);
+
+Drop table Employ;
+
+
+Employ
+_______
+
+Empno (PK)
+Name
+Gender
+Dob
+Salary 
+
+Leave
+_____
+
+LeaveID(PK)
+Empno(FK)
+Lavail
+Ltaken
+Lop
+
+Create Table Employ
+(
+    Empno number
+    constraint pk_employ_empno primary key,
+    Name varchar2(30),
+    Gender char(7),
+    Dob Date,
+    Salary number(9,2)
+);
+
+Insert into Employ(empno,Name,gender,Dob,Salary)
+values(1,'Ashwin','Male','12-NOV-2000',46644);
+
+Insert into Employ(empno,Name,gender,Dob,Salary)
+values(2,'Balasubrahmanian','Male','11-JUNE-2001',90422);
+
+Insert into Employ(empno,Name,gender,Dob,Salary)
+values(3,'Uday','Male','10-APR-1999',65344);
+
+Insert into Employ(empno,Name,gender,Dob,Salary)
+values(4,'Keerthana','Female','12-NOV-2000',46644);
+
+Insert into Employ(empno,Name,gender,Dob,Salary)
+values(5,'Jyoshna','Female','10-JAN-1999',90444);
+
+commit;
+
+Create Table Leave
+(
+   LeaveId number
+   constraint pk_leave_leaveid primary key,
+   EmpNo number
+   constraint fk_leave_empNo references Employ(Empno),
+   Ltaken number,
+   Lavail number,
+   lop number
+);
+
+Insert into Leave(leaveid,Empno,Ltaken,Lavail)
+		values(1,1,4,3);
+
+Insert into Leave(leaveid,Empno,Ltaken,Lavail)
+		values(2,2,3,4);
+
+Insert into Leave(leaveid,Empno,Ltaken,Lavail)
+		values(3,3,5,3);
+
+Insert into Leave(leaveid,Empno,Ltaken,Lavail)
+		values(4,1,4,3);
+
+
+
+Create Table Agent
+(
+   AgentId number primary key,
+   FirstName varchar(30),
+   LastName varchar(30),
+   City varchar(20),
+   State varchar(20)
+);
+
+Create Table Policy
+(
+   PolicyId number primary key,
+   AppNumber varchar(30),
+   ModalPremium number(9,2),
+   AnnualPremium number(9,2),
+   PaymentMode number
+);
+
+Create Table AgentPolicy
+(
+   AgentId number
+   constraint fk_AgentPolicy_AgentID references Agent(AgentID),
+   PolicyId number
+   constraint fk_AgentPolicy_PolicyId references Policy(PolicyID),
+   constraint pk_agentPolicy_id primary key(AgentId,PolicyID),
+   IsSplitAgent number
+);
+
+
+
+Create Table EmployNew
+(
+   Empno number,
+   Name varchar2(30),
+   salary number(9,2)
+);
+
+-- Adding Field at runtime 
+
+Alter table table_name add field data_type;
+
+-- Modify the field 
+
+Alter table table_name modify field changed_type;
+
+-- Drop the field 
+
+Alter table table_anme drop column column_name;
+
+-- Add Dept field to the EmployNew table.
+
+Alter table EmployNew add dept varchar2(30);
+
+-- Add Desig field to the EmployNew table 
+
+Alter table EmployNew add desig varchar2(30);
+
+-- Add Gender Field to the EmployNew Table 
+
+Alter table EmployNew Add Gender char(8);
+
+-- Add Primary key to the given table. 
+
+Alter Table EmployNew add constraint pk_employnew_empno
+primary key(empno);
+
+-- Drop the Gender column from EmployNew table
+
+Alter Table EmployNew Drop Column gender;
+
+Update command  : Used to update the record values. 
+
+Update table_name 
+set field1=value,field2=value...
+{where condition}
+
+update Employ
+set Name='Ashwin Praveen' where empno=1;
+
+Change value of name as 'naga jyoshna' and salary as 90000 for empno 5
+
+update Employ
+set name='Naga Jyoshna',salary=90000 where empno=5;
+
+
+
+3) DQL 
+
