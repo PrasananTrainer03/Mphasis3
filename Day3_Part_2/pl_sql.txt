@@ -1,0 +1,248 @@
+dbms_output.put_line("Welcome");
+
+begin
+     dbms_output.put_line('Welcome to pl/sql');
+   end;
+
+To print the result 
+
+set serveroutput on;
+
+_________________________________________________________________________
+
+declare
+    name varchar2(30):='Sarvesh';
+begin
+     dbms_output.put_line('Name is ' || name);
+end;
+____________________________________________________________________________
+
+declare
+    name varchar2(30):='&name';
+begin
+     dbms_output.put_line('Name is ' || name);
+end;
+__________________________________________________________________
+
+declare
+    a number:=&a;
+    b number:=&b;
+    c number;
+begin
+    c:=a+b;
+    dbms_output.put_line('Sum is  ' ||c);
+end;
+
+_____________________________________________________
+
+Insert into EmployNew(empno,Name,Dept,Desig,salary)
+   values(1,'Suraj','Java','Programmer',84224);
+
+
+Insert into EmployNew(empno,Name,Dept,Desig,salary)
+  values(2,'Neha','Ui','Manager',94224);
+
+ Insert into EmployNew(empno,Name,Dept,Desig,salary)
+  values(3,'Pragathi','Angular','Manager',94224);
+
+ Insert into EmployNew(empno,Name,Dept,Desig,salary)
+ values(4,'Uday','Angular','Manager',94224);
+
+
+Insert into EmployNew(empno,Name,Dept,Desig,salary)
+   values(5,'Nilesh','Java','Manager',95324);
+
+commit;
+
+______________________________________________________________________
+
+Show total no.of records in EmployNew table
+
+declare
+    row_count number;
+begin
+    select count(*) into row_count from EmployNew; 
+    dbms_output.put_line('Total rows are  ' ||row_count);
+end;
+
+______________________________________________________________
+
+declare
+    eno employNew.empno%type:=&eno;
+    nam employNew.name%type;
+    sal employNew.salary%type;
+begin
+   select 
+       Name,Salary into nam,sal
+     from EmployNew where empno=eno;
+   dbms_output.put_line('Name is  ' ||nam);
+   dbms_output.put_line('Salary is ' || sal);
+end;
+
+______________________________________________________________________
+
+declare
+   eno employNew.empno%type:=&eno;
+   nam employNew.name%type:='&nam';
+   dpt employNew.dept%type:='&dpt';
+   dsg employNew.desig%type:='&dsg';
+   sal employNew.salary%type:=&sal;
+begin
+    Insert into EmployNew(empno,name,dept,desig,salary)
+         values(eno,nam,dpt,dsg,sal);
+end;
+____________________________________________________________________
+
+declare
+   eno employNew.empno%type;
+   nam employNew.name%type:='&nam';
+   dpt employNew.dept%type:='&dpt';
+   dsg employNew.desig%type:='&dsg';
+   sal employNew.salary%type:=&sal;
+begin
+    select case when max(empno) is NULL THEN 1
+     else max(empno)+1 end into eno from EmployNew;
+    Insert into EmployNew(empno,name,dept,desig,salary)
+         values(eno,nam,dpt,dsg,sal);
+end;
+_______________________________________________________________________________
+
+declare
+   n number:=&n;
+begin
+   if n >= 0 then
+     dbms_output.put_line('Positive Number');
+   else 
+     dbms_output.put_line('Negative Number');
+   end if;
+end;
+___________________________________________________________________________
+
+declare
+ n number(5):=&n;
+ begin
+   if n mod 2=0 then
+    dbms_output.put_line('Even');
+   else
+    dbms_output.put_line('Odd');
+   end if;
+ end;
+
+________________________________________________________________
+
+declare
+   n number:=&n;
+   i number;
+begin
+   i:=0;
+   while i <= n
+   loop
+      i:=i+2;
+      dbms_output.put_line('Even  ' || i);
+   end loop;
+end;
+
+__________________________________________________________________________________
+
+declare
+ n number(5):=&n;
+ i number(5);
+ f number(5):=1;
+ begin
+   for i in reverse 1..n loop
+     f:=f*i;
+   end loop;
+   dbms_output.put_line('Factorial is  ' ||f);
+ end;
+
+
+__________________________________________________________________________
+
+
+create or replace procedure prcSayHello
+AS
+BEGIN
+    Dbms_output.put_line('Welcome to Stored Procedures...');
+END;
+
+To Execute the stored procedure
+
+exec prcSayHello;
+
+
+create or replace procedure prcGreeting(name varchar2)
+as
+begin
+   dbms_output.put_line('Name is  ' || name);
+end;
+
+
+exec prcGreeting('Ashwin')
+
+create or replace procedure prcCalc(a number,b number)
+AS
+BEGIN
+    declare
+      c number;
+    begin
+       c:=a+b;
+       dbms_output.put_line('Sum is  ' ||c);
+    end;
+end;
+
+exec prcCalc(12,5)
+
+create or replace procedure prcShowEmpCount
+AS
+BEGIN
+     declare
+       row_count number;
+     begin
+        select count(*) into row_count from EmployNew;
+        dbms_output.put_line('Row Count is ' || row_count);
+     end;
+END;
+
+ exec prcShowEmpCount;
+
+Create or replace procedure prcEmpSearch(eno employnew.empno%type)
+AS
+BEGIN
+    Declare
+       nam employnew.name%type;
+       dpt employnew.dept%type;
+       dsg employnew.desig%type;
+       sal employnew.salary%type;
+   begin
+       select 
+       Name,Dept,Desig, Salary into 
+       nam,dpt,dsg,sal
+     from EmployNew where empno=eno;
+       dbms_output.put_line('Name ' ||nam);
+       dbms_output.put_line('Department ' ||dpt);
+       dbms_output.put_line('Designation ' ||dsg);
+       dbms_output.put_line('Salary ' ||sal); 
+   end;
+END;
+
+exec prcEmpSearch(1);
+___________________________________________________________________________________
+
+Create or replace procedure prcEmpInsert(
+		nam employnew.name%type,
+                dpt employnew.dept%type,
+                dsg employnew.desig%type,
+                sal employnew.salary%type)
+AS
+BEGIN
+     declare
+       eno number;
+     begin 
+         select case when max(empno) is NULL THEN 1
+         else max(empno)+1 end into eno from EmployNew;
+         Insert into EmployNew(empno,name,dept,desig,salary)
+         values(eno,nam,dpt,dsg,sal);
+     end;    
+END;
+
+exec prcEmpInsert('Abhishek','Java','Developer',88425);
