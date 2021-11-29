@@ -1,0 +1,109 @@
+declare
+   a number:=&a;
+   b number:=&b;
+   c number;
+begin
+    c:=a/b;
+    dbms_output.put_line('Division is   ' ||c);
+end;
+
+______________________________________________________________________________
+
+declare 
+   a number:=&a;
+   b number:=&b;
+   c number;
+begin
+    c:=a/b;
+    dbms_output.put_line('Division is   ' ||c);
+exception 
+ WHEN ZERO_DIVIDE then
+    dbms_output.put_line('Division by zero impossible...');
+end;
+
+_____________________________________________________________________________________________
+
+Create or replace procedure prcDivision(a number,b number) 
+AS
+BEGIN
+    declare
+       c number;
+    begin
+       c:=a/b;
+       dbms_output.put_line('Division is  ' ||c);
+    end;
+Exception
+    when ZERO_DIVIDE THEN
+      dbms_output.put_line('Division by zero impossible...');
+END;
+
+____________________________________________________________________________________
+
+Create or replace procedure prcEmpSearch(eno employnew.empno%type)
+AS
+BEGIN
+    Declare
+       nam employnew.name%type;
+       dpt employnew.dept%type;
+       dsg employnew.desig%type;
+       sal employnew.salary%type;
+   begin
+       select 
+       Name,Dept,Desig, Salary into 
+       nam,dpt,dsg,sal
+     from EmployNew where empno=eno;
+       dbms_output.put_line('Name ' ||nam);
+       dbms_output.put_line('Department ' ||dpt);
+       dbms_output.put_line('Designation ' ||dsg);
+       dbms_output.put_line('Salary ' ||sal); 
+   end;
+Exception
+   WHEN NO_DATA_FOUND THEN
+      dbms_output.put_line('Employ No ' ||eno || ' Not Found');
+END;
+
+_____________________________________________________________________________________
+
+Create Or Replace procedure prcEmpDeptSearch(dpt employnew.dept%type)
+AS
+BEGIN
+    Declare
+       nam employnew.name%type;
+       dsg employnew.desig%type;
+       sal employnew.salary%type;
+    begin
+       select 
+       Name,Desig, Salary into 
+       nam,dsg,sal
+     from EmployNew where Dept=dpt;
+       dbms_output.put_line('Name ' ||nam);
+       dbms_output.put_line('Department ' ||dpt);
+       dbms_output.put_line('Designation ' ||dsg);
+       dbms_output.put_line('Salary ' ||sal); 
+	
+    end;
+Exception 
+   when NO_DATA_FOUND Then
+     dbms_output.put_line('No Department Exists with Name ' ||dpt);
+   WHEN TOO_MANY_ROWS Then 
+     dbms_output.put_line('Contains More records with Dept Name ' ||dpt);
+END;
+
+_________________________________________________________________________________________
+
+Create or replace procedure prcEmpInsert(
+                eno employnew.empno%type,
+		nam employnew.name%type,
+                dpt employnew.dept%type,
+                dsg employnew.desig%type,
+                sal employnew.salary%type)
+AS
+BEGIN
+     begin 
+         Insert into EmployNew(empno,name,dept,desig,salary)
+         values(eno,nam,dpt,dsg,sal);
+     end;    
+Exception 
+     when DUP_VAL_ON_INDEX Then
+         dbms_output.put_line('Employ No already exists ' ||eno);
+END;
