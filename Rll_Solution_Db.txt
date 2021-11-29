@@ -1,0 +1,30 @@
+Maintain Canteen Managment System (CMS) 
+
+Maintain Customer Details, vendor Details, Menu Details, if possible place restaurant details, 
+
+Once Customer Places an order, then he select the restaurant and from that restaurant corresponding menu to be displayed.  Now, you can place an order by selecting MenuitemName and Quantity, then Bill Amount to be calculated. NOw, you need to pay the bill, by using Wallet. So, needs to maintain your wallet details also. 
+
+After that you need to monitor all order details, as 
+
+Customer Orders
+Vendor Orders
+
+Customer Pending Orders
+Vendor Pending Orders 
+
+CMD(RestaurantId,RestaurantName,City,Branch,Email,ContantNo,MenuId,ItemName,MenuType,Calories,Price,CustomerId,CustomerName,CustomerCity,CustomerState,CustomerEmail,CustomerContactNo,VendorId,vendorName,VendorCity,VendorState,VendorEmail,VendorContactNo,OrderId,OrderStatus,QuantityOrderd,BillAmount,Comments,WalletId,WalletName,WalletBalance)
+
+
+Restaurant(RestaurantID+,RestaurantName,City,Branch,Email,ContactNo)
+Menu(MenuID+,RestaurantID-,ItemName,MenuType,Calaroies,Price) 
+Customer(CustomerID+,CustomerName,CustomerState,CustomerCity,CustomerEmail,CustomerMobile)
+Vendor(VendorId+,VendorName,VendorState,VendorCity,VendorEmail,VendorMobile) 
+Orders(OrderId+,VendorID-,CustomerId-,MenuId-,WalletId-,OrderDate,QuantityOrdered,OrderStatus,BillAmount,Comments)
+Wallet(WalletId+,CustomerID-,WalletType,Amount) 
+
+
+________________________________________________________________________
+
+
+Create the tables and show me by 4.30 today. 
+
