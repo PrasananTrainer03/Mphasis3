@@ -1,0 +1,190 @@
+Normalization : 
+
+Normalization is a technique of breaking down the 
+complex tables into simple tables by using
+certain rules. 
+
+There are various types of normal forms as
+
+1) First Normal Form
+
+2) Second Normal Form
+
+3) Third Normal Form 
+
+First Normal Form : 
+____________________
+
+A table said to be in first normal form (1NF), each cell contains 
+precisely once value. (Atomic Values) 
+
+Project(Ecode,Ename,DeptCode,DeptHead,ProjCode,Hours) 
+
+E001,Uday,D001,Shrini,{P001,P003,P004},{68,88,67} 
+
+By Applying First Normal Form 
+
+E001,Uday,D001,Shrini,P001,68
+E001,Uday,D001,Shrini,P003,88
+E001,Uday,D001,Shrini,P004,67
+
+Ensure, the table normalized or not, you can check by using anomolies
+
+INSERT
+
+	 The department of the particular employee cannot be recorded until the employee is assigned a project. 
+
+UPDATE
+
+	The Employee Code, Department Name, and department head are repeated several times, if an employee is transferred to another dept. this change will have to be recorded in every row of the EMPLOYEE table pertaining to that employee. 
+
+DELETE 
+
+	When an employee completes work on the project, the employee's record to be deleted. The info. regarding the department to which the emplyee belongs will also to be lost. 
+
+w.r.t. Above, First Normal Form inadequate to handle. 
+
+Second Normal Form : 
+
+	A table said to be in 2NF, at first it must be in first normal form, each field functionally depend on whole key but not part of the key. 
+
+   Functional Dependency  
+
+Project(Ecode,Ename,DeptCode,DeptHead,ProjCode,Hours) 
+
+In above scenari take Ecode as main key(primary key),
+
+     -> Find and remove attributes that are not functionally depend on primary key
+
+     -> Group the remaining atributes. 
+
+  Ecode -> 
+
+	Ecode -> Ename (yes)
+        Ecode -> DeptCode (yes)
+        Ecode -> DeptHead (yes) 
+        Ecode -> ProjCode (no)
+        Ecode -> hours (no) 
+
+w.r.t. Functional dependency 
+
+
+Employ(Ecode+,Ename,DeptCode,DeptHead) 
+Project(Projcode,Hours,Ecode-) {Projcode+Ecode}
+
+Insert : The DEPTHEAD of a new dept that does not have any employees at the present cannot be entered in the DEPTHEAD column.
+
+Update : the DEPTHEAD is repeated several times, hence if a dept head moves to another dept, the change will have to be made consistently across the table. 
+
+Delete : If the record of the employee is deleted, then the information regarding the head of the dept will also to be deleted. Hence there will be a loss of information. 
+
+
+Here, it leads to transitive dependency. 
+
+2NF inadequate
+
+Third Normal Form : A table said to be in 3NF, at first it must be in 2NF, and each attribute needs to depend on whole key, but not trasitively. 
+
+Guidelines : 
+
+  -> Find and remove attribute that are transitively depend on whole key
+
+  -> Group the remaining attributes.
+
+By Applying 3NF 
+_______________
+
+    Dept(Depcode+,DeptHead)
+    Employ(Ecode+,DeptCode-,Ename)
+    Project(ProjCode,Ecode-,Hours) {ProjCode+Ecode} 
+
+_____________________________________________________________________________________________
+
+AgentInformation(AgentId,FirstName,LastName,city,State,PolicyID,Installment,totalPremium,Paymode) 
+
+First Normal Form : 
+
+A table said be in 1NF, when each cell contains precisely one value 
+
+A001,Bala,Subramanian,Chennai,TN,{P1,P2,P3},{5858,7272,5543},{88884,77754,77244},{1,2,3} 
+
+Insert : Agent Record Will not be inserted until his policy details are present. 
+
+Update : Policy Details like, premium,installment,paymode repeated multiple times, if data changes to be 
+		reflected in all places. 
+
+Delete : If any agent record deleted, then the particular policy records also to be deleted. 
+
+1NF inadequate. 
+
+2NF : A table said to be in 2NF, at first it must be in 1NF, and each evey attribute functionally depend on whole key, but not part of the key. 
+
+
+AgentID -> FirstName (Yes)
+AgentId -> LastName (Yes)
+AgentId -> City (Yes) 
+AgentId -> State (Yes)
+AgentId -> PolicyID (No)
+AgentId -> Installment (No)
+AgentId -> AnnualPremium (No)
+AgentId -> PayMode (No) 
+
+Guidelines
+
+    Find and remove attribute attributes that are not functionally depend on whole key
+
+    Group the remaining attributes.
+
+
+By applying 2Nf 
+
+
+   Agent(AgentId+,FirstName,LastName,City,State)
+   Policy(AgentId-,PolicyId,Installment,Premium,PayMode) 
+
+
+Insert : Policy Record cannot be inserted, until AgentId is there. {Wrong}
+
+Update : NO issues
+
+Delete : If any policy Deleted, then the agent details also to be deleted. 
+
+2NF inadequate  
+
+third normal form : A table said to be 3NF, at first it must be in 2NF, and each field needs to depend on 
+whole key, but not transitively. 
+
+Guidelines : 
+
+	Find and remove attributes, that are transitively depend on whole key
+
+	Group the remaining attributes. 
+
+By applying 3NF
+
+PolicyId -> AgentID  (No)
+PolicyID -> Installment (Yes) 
+PolicyID -> Premium (Yes)
+PolicyID -> PayMode (Yes) 
+
+Agent(AgentId+,FirstName,LastName,City,State)
+Policy(PolicyID+,Installment,Premium,PayMode)
+AgentPolicy(AgentId-,PolicyID-) {AgentId+PolicyID} 
+
+______________________________________________________________________________________________
+
+Maintain Canteen Managment System (CMS) 
+
+Maintain Customer Details, vendor Details, Menu Details, if possible place restaurant details, 
+
+Once Customer Places an order, then he select the restaurant and from that restaurant corresponding menu to be displayed.  Now, you can place an order by selecting MenuitemName and Quantity, then Bill Amount to be calculated. NOw, you need to pay the bill, by using Wallet. So, needs to maintain your wallet details also. 
+
+After that you need to monitor all order details, as 
+
+Customer Orders
+Vendor Orders
+
+Customer Pending Orders
+Vendor Pending Orders 
+
+CMD(RestaurantId,RestaurantName,City,Branch,Email,ContantNo,MenuId,ItemName,MenuType,Calories,Price,CustomerId,CustomerName,CustomerCity,CustomerState,CustomerEmail,CustomerContactNo,VendorId,vendorName,VendorCity,VendorState,VendorEmail,VendorContactNo,OrderId,OrderStatus,QuantityOrderd,BillAmount,Comments,WalletId,WalletName,WalletBalance)
