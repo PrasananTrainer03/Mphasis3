@@ -67,7 +67,7 @@ BEGIN
                       CheqFacil=NVL2(cf,cf,CheqFacil),
                       AccountType=NVL2(Actype,Actype,AccountType)
        WHERE AccountNo=Accno;
-                     
+       dbms_output.put_line('Account Updated...');                 
 END;
 
 Create Table Accounts

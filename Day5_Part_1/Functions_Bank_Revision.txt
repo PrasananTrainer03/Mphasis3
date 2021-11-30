@@ -1,0 +1,197 @@
+create or replace function evens(n number) return varchar2 as
+res varchar2(15);
+begin
+    if n mod 2 = 0 then
+      res:='even';
+    else
+      res:='odd';
+    end if;
+    return res;
+end;
+
+
+select even(5) from dual;
+__________________________________________________________________________________________
+
+create or replace function tax(basic number) return number as
+begin
+     return basic*0.03;
+end;
+
+select tax(10000) from dual;
+
+select empno,ename,job,sal,tax(sal) from Emp;
+ 
+select empno,ename,job,sal,tax(sal),sal-tax(sal) "Take Home" from Emp;
+
+___________________________________________________________________________________
+
+ create or replace function fac(n number) return number as
+ f number;
+ i number;
+ begin
+     i:=1;
+     f:=1;
+     for i in 1..n
+     loop
+       f:=f*i;
+     end loop;
+     return f;
+ end;
+
+_________________________________________________________________________________________
+
+ncr 
+
+
+create or replace function ncr(n number, r number) return number
+AS
+   result number;
+begin
+    select fac(n)/(fac(n-r)*fac(r)) into result from dual;
+    return result;
+end;
+
+
+select ncr(5,2) from dual;
+
+______________________________________________________________________________________
+
+insert into Policy(PolicyId,AppNumber,ModalPremium,AnnualPremium,paymentMode)
+    values(01,'google',123,321, 1);
+ 
+insert into Policy(PolicyId,AppNumber,ModalPremium,AnnualPremium,paymentMode)
+   values(02,'intel',198,376, 2);
+
+  insert into Policy(PolicyId,AppNumber,ModalPremium,AnnualPremium,paymentMode)
+  values(03,'facebook',987,356,3);
+
+
+insert into Policy(PolicyId,AppNumber,ModalPremium,AnnualPremium,paymentMode)
+ values(04,'dell',876,321,1);
+
+
+ insert into Policy(PolicyId,AppNumber,ModalPremium,AnnualPremium,paymentMode)
+  values(05,'fujitsu',876,432,015);
+
+
+ insert into Policys(PolicyId,AppNumber,ModalPremium,AnnualPremium,paymentMode)
+     values(06,'app',756,345,2);
+
+
+  insert into Policy(PolicyId,AppNumber,ModalPremium,AnnualPremium,paymentMode)
+  values(07,'temp',987,342,3);
+
+ insert into Policy(PolicyId,AppNumber,ModalPremium,AnnualPremium,paymentMode)
+  values(08,'approximate',987,453,2);
+
+  
+insert into Policy(PolicyId,AppNumber,ModalPremium,AnnualPremium,paymentMode)
+values(09,'annual',098,345,1);
+  
+
+insert into Policy(PolicyId,AppNumber,ModalPremium,AnnualPremium,paymentMode)
+values(10,'noth',876,324,3);
+
+_____________________________________________________________________________
+
+Create or replace function showPayMode(payMode number) return varchar2
+AS
+   payType varchar2(30);
+begin
+    select case PayMode
+       when 1 then 'Yearly' 
+       when 2 then 'Half-Yearly'
+       when 3 then 'Quarterly'
+       else 'Unknown' end into Paytype from dual;
+    return payType;
+end;
+
+select policyId,ModalPremium,PaymentMode,showPayMode(paymentmode) from policy;
+
+___________________________________________________________________________________________
+
+
+create or replace function employExists(eno employnew.empno%type) return number
+as
+sal employNew.salary%type;
+begin
+    select salary into sal from Employnew where empno=eno;
+    return 1;
+exception
+    WHEN NO_DATA_FOUND THEN
+       return 0;
+end;
+
+___________________________________________________________________________________________
+
+create or replace procedure AccountUpdate
+(
+Accno Accounts.AccountNo%type,
+Fname Accounts.FirstName%type,
+Lname Accounts.LastName%type,
+Cit Accounts.City%type,
+Stat Accounts.State%type,
+Amt Accounts.Amount%type,
+Cf Accounts.CheqFacil%type,
+Actype Accounts.AccountType%type
+)
+AS
+BEGIN
+  declare 
+     status number;
+  begin
+  select accountNoExists(accno) into status from dual;
+  if status = 1 then
+  Update Accounts set FirstName=NVL2(Fname,Fname,FirstName),
+                      LastName=NVL2(Lname,Lname,LastName),
+                      City=NVL2(Cit,Cit,City),
+                      State=NVL2(Stat,Stat,State),
+                      Amount=NVL2(Amt,Amt,Amount),
+                      CheqFacil=NVL2(cf,cf,CheqFacil),
+                      AccountType=NVL2(Actype,Actype,AccountType)
+       WHERE AccountNo=Accno;
+       dbms_output.put_line('Account Updated...'); 
+   else 
+      dbms_output.put_line('Invalid Account No...');     
+   end if;
+   end;           
+END;
+
+_____________________________________________________________________________________________
+
+create or replace procedure prcAccountClose(Accno Accounts.AccountNo%type)
+AS
+BEGIN 
+  declare 
+     status number;
+  begin
+  select accountNoExists(accno) into status from dual;
+  if status = 1 then             
+    		Update Accounts set Status='InActive' where AccountNo=Accno;
+	dbms_output.put_line('Account Closed...');
+  else 
+         dbms_output.put_line('Account No Not Found...');
+  end if;
+  end;
+END;
+
+
+
+
+
+create or replace function accountNoExists(accno Accounts.AccountNo%type) return number
+as
+amt Accounts.Amount%type;
+begin
+    select Amount into amt from Accounts where AccountNo=accno;
+    return 1;
+exception
+    WHEN NO_DATA_FOUND THEN
+       return 0;
+end;
+
+_________________________________________________________________________________________
+
+exec AccountUpdate(100,'asdf','asdfasf','sfdaas','asdfasf',8484,'adsf','asdfasdf');
+
