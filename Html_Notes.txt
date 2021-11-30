@@ -1,0 +1,120 @@
+Web Applications : 
+
+These are the applications, that which are to be called from various places rather than 
+where they are created.  If you want to make any distributed or robust applicaitons, then we
+need the help of web applications. 
+
+You can create web applications in 2 ways as
+
+(i) Scripting Languages
+
+	Scripting languages are languages, that which are interpreted, during runtime they 
+	takes lot of time to execute. 
+
+(ii) Programming Languages 
+
+	These are the languages that which are compiled first, during runtime 
+	they takes very less time to execute. 
+
+In Web Applications, we can implement both
+
+Client-side and Server-Side scripting 
+
+Client Side scripting, enables you to access the application from the client system. 
+
+No Network Traffic
+
+Execution will be faster. 
+
+
+In Server-side scripting, 
+
+  -> Enables you to access the application from the server
+
+  -> Execution will be a bit slower
+
+  -> Network traffic is high 
+
+*** Any intranet based application w.r.t. No security please opt for client-side scripting ***
+
+*** Any internet based application w.r.t. Min. security, please opt for both client-side/server-side
+		scripting ***
+
+*** Any internet based application w.r.t. High security, plesae opt for server-side scripting ***
+
+HTML (HyperText Markup Language) 
+
+	Used to create sample web pages. 
+
+To start with HTML, we need as
+
+<html>
+</html> 
+
+<head>
+</head> : Used to define the global content for the given page. 
+
+<title> : used to display heading on title bar. 
+
+<title></title> 
+
+<body>
+</body> : Contains the actual content for the given page. 
+
+DL -> Definition Language 
+
+   DT -> Definition Term
+
+   DD -> Definition Description 
+
+To place an image, we have to give as
+
+<img src="imagepath" /> 
+
+Anchor tag : Used to link the given page with other page. 
+
+<a href="target_page">targeted page</a>
+
+Forms : 
+________
+
+Allows you to accept input from the keyboard. 
+
+Here, we have various tags as 
+
+<input type="text" /> 
+
+<input type="number" /> 
+
+<input type="radio" /> 
+
+<input type="checkbox" /> 
+
+<input type="date" /> 
+
+<input type="month" /> 
+
+<input type="password" /> 
+
+<input type="button" /> 
+
+<input type="reset" />
+
+<input type="submit" /> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
