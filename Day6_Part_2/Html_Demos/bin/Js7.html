@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+	function doLogin() {
+		var userName, passCode;
+		userName = frmLogin.userName.value;
+		passCode = frmLogin.passWord.value;
+		if (userName=="Saravan" && passCode=="Saravan") {
+			alert("Correct Credentials...");
+		} else {
+			alert("Invalid Credentials...");
+		}
+	}
+</script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form name="frmLogin">
+		<table border="3" align="center">
+			<tr>
+				<th colspan="2">
+					Login Page
+				</th>
+			</tr>
+			<tr>
+				<th>User Name</th>
+				<td> 
+					<input type="text" name="userName" /> 
+				</td>
+			</tr>
+			<tr>
+				<th>Password</th>
+				<td>
+					<input type="password" name="passWord" />
+				</td>
+			</tr>
+			<tr>
+				<th colspan="2">
+					<input type="button" value="Login" onclick="doLogin()" />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="reset" value="Reset" />
+				</th>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
