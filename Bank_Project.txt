@@ -110,6 +110,7 @@ END;
 create or replace procedure prcAccountClose(Accno Accounts.AccountNo%type)
 AS
 BEGIN 
+               
     		Update Accounts set Status='InActive' where AccountNo=Accno;
 END;
 
