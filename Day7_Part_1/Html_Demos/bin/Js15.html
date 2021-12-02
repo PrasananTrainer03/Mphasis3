@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+	function show() {
+		var name = "Welcome to Javascript training...from Prasanna";
+		var result="";
+		result+="Length of Given String is  " +name.length+ "<br/>";
+		result+="Char @ 5th position  " +name.charAt(5) +"<br/>";
+		result+="First Occurrence of char 'a' is  " +name.indexOf("a") + "<br/>";
+		result+="Lower case String  " +name.toLowerCase() + "<br/>";
+		result+="Upper Case String  " +name.toUpperCase() + "<br/>";
+		result+="Substring is  " +name.substr(10,20) + "<br/>";
+		result+="Replaced String is  " +name.replace("Javascript","UI") +"<br/>";
+		document.getElementById("result").innerHTML=result;
+	}
+</script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body onload="show()">
+	<span id="result"></span>
+</body>
+</html>

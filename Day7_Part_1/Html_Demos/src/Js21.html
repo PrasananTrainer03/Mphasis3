@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+		var questions=[
+			"1. What is OOPS",
+			"2. What is HTML",
+			"3. Difference between HTML and Javascript",
+			"4. Difference between == and ===",
+			"5. What is DOM stands for"
+			];
+
+		var count = questions.length;
+		var i=0;
+		function show() {
+			document.getElementById("question").innerHTML=questions[i];
+		}
+		function next() {
+			i++;
+			if (i==count) {
+			 i=count-1;
+			}
+			show();
+		}
+		function previous() {
+			i--;
+			if (i < 0) {
+			  i=0;
+			}
+			show();
+		}
+</script>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body onload="show()">
+	<p id="question"></p> <br/><br/> 
+	<input type="button" value="Next" onclick="next()" /> 
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="button" value="Previous" onclick="previous()" />
+</body>
+</html>
