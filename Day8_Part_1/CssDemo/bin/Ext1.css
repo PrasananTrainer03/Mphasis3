@@ -1,0 +1,20 @@
+p {
+	color:blue;
+	background-color:red;
+	font-size: 36pt;
+	font-family: Arial;
+}
+
+div {
+	color:yellow;
+	background-color: maroon;
+	font-size: 48pt;
+	font-family: garamond;
+}
+
+h1 {
+	color:yellow;
+	background-color: blue;
+	font-size: 38pt;
+	font-family: tahoma;
+}
