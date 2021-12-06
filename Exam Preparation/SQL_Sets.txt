@@ -1,0 +1,80 @@
+SET Operators
+
+select empno,ename,job,sal from Emp
+where sal between 1000 and 3000
+INTERSECT
+select empno,ename,job,sal from Emp
+where sal between 2000 and 5000;
+
+
+INTERSECT  -> This is set operator, used to extract only the common records from the given tables. 
+
+
+select empno,ename,job,sal from Emp
+where sal between 1000 and 3000
+INTERSECT
+select empno,ename,job,sal from Emp
+where sal between 2000 and 5000;
+
+UNION -> Displays combination of two queries
+
+select empno,ename,job,sal from Emp
+where sal between 1000 and 3000
+UNION 
+select empno,ename,job,sal from Emp
+where sal between 2000 and 5000;
+
+select empno,ename,job,sal from Emp
+where sal between 1000 and 3000
+UNION ALL 
+select empno,ename,job,sal from Emp
+where sal between 2000 and 5000;
+
+select empno,ename,job,sal from Emp
+where sal between 1000 and 3000
+MINUS
+select empno,ename,job,sal from Emp
+where sal between 2000 and 5000;
+
+
+Which set operator used to extract only common records from the given queries 
+
+INTERSECT
+
+Which set operator used to print records from combination of two queries without duplicates
+
+UNION
+
+Which set operator used to print records from combination of two queries with duplicates
+
+UNION ALL
+
+which set operator used to print records, as which exists in first query but not in second 
+
+MINUS
+
+_______________________________________________________________________________________________
+
+PL/SQL 
+
+Cursors : Used to fetch the data row by rows. 
+
+Steps to create a cursor 
+
+declare 
+   cursor cursor_name is select command 
+
+How to open cursor
+
+open cursor_name
+
+We need to load the table values into variables. 
+
+then fetch command will be used
+
+fetch cursor_name into variables. 
+
+
+isopen -> used to check the cursor is open or not. 
+
+
