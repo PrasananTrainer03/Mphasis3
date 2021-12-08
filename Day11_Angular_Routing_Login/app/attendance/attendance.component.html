@@ -1,0 +1,33 @@
+<p>attendance works!</p>
+
+Narendra : 
+<input type="checkbox" name="chkNarendra" [(ngModel)]="chkNarendra" /> 
+<br/><br/>
+Tejasree : 
+<input type="checkbox" name="chkTejasree" [(ngModel)]="chkTejasree" /> 
+<br/><br/>
+
+<div *ngIf="chkTejasree==true">
+    <p>
+        Tejasree is Present today
+    </p>
+</div>
+
+<div *ngIf="chkTejasree==false">
+    <p>
+        Tejasree is Absent today
+    </p>
+</div>
+
+<div *ngIf="chkNarendra==true">
+    <p>
+        Narendra is Present Today...
+    </p>
+</div>
+
+<div *ngIf="chkNarendra==false">
+    <p>
+        Narendra is Absent Today...
+    </p>
+</div>
+

@@ -1,0 +1,23 @@
+<p>menu works!</p>
+<!-- <a [routerLink]="['twoway']">Two Way Component</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink]="['calc']">Calculation Component</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink]="['checkdemo']">Checkbox Component</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink]="['attendance']">Attendance Component</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink]="['employ']">Employ Component</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink]="['employdropdown']">Employ DropDown Component</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+
+<a [routerLink]="['/menu',{outlets: {'mphasis': ['twoway']}}]"> Twoway</a> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink]="['/menu',{outlets: {'mphasis': ['calc']}}]"> Calculation</a> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink]="['/menu',{outlets: {'mphasis': ['checkdemo']}}]"> CheckBox Demo</a> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink]="['/menu',{outlets: {'mphasis': ['attendance']}}]"> Attendance Demo</a> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink]="['/menu',{outlets: {'mphasis': ['employ']}}]"> Employ Table</a> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink]="['/menu',{outlets: {'mphasis': ['employdropdown']}}]"> Employ DropDown</a> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<hr/>
+<router-outlet name="mphasis"></router-outlet>
