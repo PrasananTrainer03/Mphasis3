@@ -1,0 +1,64 @@
+<p>
+    {{msg}}
+</p>
+<p>reactive-employ works!</p>
+<form [formGroup]="employForm" (ngSubmit)="onFormSubmit()">
+    <table>
+        <tr>
+            <th>Employ No</th>
+            <td> 
+                <input formControlName="empno">
+                <div style="color:red;" *ngIf="employForm.get('empno').invalid 
+                 && !isFormSubmitted"> 
+              Employ No required. 
+           </div>
+ 
+            </td>
+        </tr>
+        <tr>
+            <th>Employ Name</th>
+            <td>
+                <input formControlName="name">
+                <div style="color:red;" *ngIf="employForm.get('name').invalid 
+                && !isFormSubmitted"> 
+             Name is required. 
+             </div>
+            </td>
+        </tr>
+        <tr>
+            <th>Department</th>
+            <td>
+                <input formControlName="dept">
+                <div style="color:red;" *ngIf="employForm.get('dept').invalid 
+                && !isFormSubmitted"> 
+             Name is required. 
+             </div>
+            </td>
+        </tr>
+        <tr>
+            <th>Designation</th>
+            <td>
+                <input formControlName="desig">
+                <div style="color:red;" *ngIf="employForm.get('desig').invalid 
+                && !isFormSubmitted"> 
+             Name is required. 
+             </div>
+            </td>
+        </tr>
+        <tr>
+            <th>Basic</th>
+            <td>
+                <input formControlName="basic">
+                <div style="color:red;" *ngIf="employForm.get('basic').invalid 
+                && !isFormSubmitted"> 
+             Name is required. 
+             </div>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">
+                <input type="submit" value="Show" />
+            </th>
+        </tr>
+    </table>
+</form>
