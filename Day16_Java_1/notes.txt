@@ -253,6 +253,48 @@ used to define the flow of the program.
 
 
 
+Strings are immutable, means once they are assigned we cannot change the value by using any string methods. 
+
+Arrays : 
+_________
+
+   An array is the finite ordered set of homogeneous elements, means all the elements belongs to same data type. 
+
+All the elements of array are stored in successive memory locations.
+
+int[] a=new int[]{4,11,66,32,554};
+
+a[0]=4;
+a[1]=11;
+a[2]=66;
+a[3]=32;
+a[4]=554;
+
+internal execution of foreach loop
+
+int[] a=new int[] {4,42,66,23,31};
+//		for(int i=0;i<a.length;i++) {
+//			System.out.println(a[i]);
+//		}
+		for (int i : a) {
+			System.out.println(i);
+		}
+
+
+At first, i points to the first element in array A, after processing first element, it checks next element
+is there or not by using hasMoreElements(), if hasMoreElements() returns true, if moves to the next element 
+by using nextElement(). It repeats as soon as hasMoreElements() return true. 
+
+
+There are 2 types of memories known as
+
+	(i) STACK
+	
+	(ii) HEAP 
+
+*** Value types will be stored in STACK memory and reference types will  be stored in HEAP memory ***
+
+
 
 
 
