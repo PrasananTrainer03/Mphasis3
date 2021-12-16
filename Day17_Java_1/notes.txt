@@ -119,6 +119,71 @@ It has 2 forms as
 2) super as a constructor : If you want to pass values from derived class to base class, then we need
 the help of super constructor. 
 
+Abstract Class : 
+________________
+
+A class, that which can be created, but not implemented and instantiated
+known as abstract class. Abstract class contains abstract and non-abstract
+methods, abstract methods needs to be overrided mandetorily by the derived 
+class. 
+
+Interface : 
+____________
+
+Java does not support the concept of multiple inheritance, to achieve this 
+we need the help of interfaces. 
+
+An interface contains method declaration, and the implementation can be done
+in the corresponding class.  You can add more than one interface to the particular class. 
+
+Difference between interface and Abstract Class : 
+____________________________________________________
+
+
+(i) An abstract class contains both abstract and non-abstract methods, where interface contains 
+	only abstract methods.
+
+(ii) interface methods are public and abstract by default. 
+
+(iii) Multiple Inheritance can be achieved by using interfaces
+
+(iv) An interface can be called from anywhere to anywhere. 
+
+When to Use Interface and When to use Abstract class ???
+
+
+Abstract class used to represent hierarchical data, where interface can be used for specialization. 
+
+
+Final classes
+
+	Cannot be inherited
+
+Final methods
+	cannot be overrided
+
+final variables cannot be changed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
