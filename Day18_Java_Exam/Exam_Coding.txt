@@ -1,0 +1,24 @@
+1) Write a Program to display a number in roman number format. 
+
+2) Write a Program to implement multiplication of 2 numbers as
+
+(100 digit * 100 digit) exact value i need
+
+ex : 
+First No
+	9843829837458792345897328975328495234895892389572387953289789489489449843897785
+Second No
+	9845897234897234897897568984823784284385972875843758723458923498724894848848758
+
+Result : 
+
+3) Create a class as Student Contains
+
+sno -> int
+name -> string
+city -> string
+cgp -> double
+
+Create an array with of Student and store 5 to 10 records and print them
+in tablular format. 
+
