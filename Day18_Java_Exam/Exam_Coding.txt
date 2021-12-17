@@ -1,4 +1,4 @@
-1) Write a Program to display a number in roman number format. 
+1) Write a Program to display a number in roman number format (1 to 9999)
 
 2) Write a Program to implement multiplication of 2 numbers as
 
@@ -10,7 +10,7 @@ First No
 Second No
 	9845897234897234897897568984823784284385972875843758723458923498724894848848758
 
-Result : 
+Result : Print Exact result no exponent values
 
 3) Create a class as Student Contains
 

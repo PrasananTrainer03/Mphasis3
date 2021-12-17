@@ -1,0 +1,137 @@
+Exception Handling : 
+_____________________
+
+
+	-> It is a mechanism of handling the runtime errors during execution
+of the program. 
+
+There are 2 types of errors known as 
+
+	(i) Compile Time
+
+	(ii) Runtime 
+
+By using Exception Handling, we can overcome runtime errors. 
+
+To Handle, errors, we have 3 blocks as 
+
+1) try block
+
+	This block contains statements in which there is possibility of 
+getting runtime errors, the statements which are placed in this block are
+treated as heavy weighted statements as JVM allocates excess memory to them. 
+
+2) catch block
+
+	Once exception raised in try block, then the control will be forwarded
+to catch block, this block contains alternate statements for exceptions raised
+in try block, one try block can contains multiple catch blocks. 
+
+3) finally block 
+
+	This block contains statements that needs to be executed mandetorily irrespective of try and catch blocks. This block is not mandetory, but all the statements which are placed in this block are executed as mandetory statements. 
+
+	Exception is the top most class, from which all kinds of exceptions are derived. 
+
+try {
+...
+...
+} catch(Exception e) {
+....
+....
+} finally {
+...
+...
+...
+}
+
+printStackTrace() : An expception contains
+
+	-> Error Message
+	-> Exception Class
+	-> Error Line Number
+
+All details once you can get by using this method. 
+
+There are 2 types of Exceptions known as 
+
+	(i) Checked Exception
+
+		These are the exceptions that which occurs at compile time, during compilation jvm feels
+	some erroneous code is there and stops the execution at compile time, can be handled at method level
+	by using throws keyword. 
+
+	(ii) Unchecked Exception 
+
+		These are the exceptions that which occurs at runtime, can be handled by using try...catch 
+	block. 
+
+SimpleDateFormat used to convert String to Date and Date to String. 
+
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+its from 
+
+import java.text.SimpleDateFormat;
+
+format() : used to convert Date to String
+
+parse() : used to convert String to Date. 
+
+throw keyword : 
+
+If you want to throw the exceptions based on the condition, then we need the help of throw keyword. 
+
+Assume, write a program as 
+
+Accept a number 
+
+if number < 0 then throw NumberFormatException
+
+if number = 0 then throw ArithmeticException 
+
+What is the difference between throws and throw
+________________________________________________
+
+throws keyword will be used at method level, where throw keyword will be used
+at code level.
+
+By using throws keyword, we can throw an Exception class, there by using throw keyword 
+we can throw only excepion objects. 
+
+How to Define Custom Exceptions :
+
+System exceptions are inadequate to handle in all situations, to overcome this we need the help of custom exceptions. Any class that which derived from exception can be treated as custom exception. 
+
+write a program to accept age, if age < 18 then throw Exception as VotingException, else print the age with message. 
+
+
+Write a program perform sum of 2 numbers, if any number < 0 then throw NegativeException, if any number = 0 then throw NumberZeroException 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
