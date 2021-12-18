@@ -1,0 +1,43 @@
+Collections are coming from 
+
+java.util package 
+
+Scanner : This class allows you to read data from the keyboard. 
+
+Scanner sc = new Scanner(System.in);
+
+nextLine() -> Used to read a string with spaces
+
+next() -> Reads a single work
+
+nextInt() -> Used to read integer. 
+
+Map interface : this interface is not in collection framework, used to store data w.r.t. Key/Value pairs. 
+
+In this, we have HashTable and HashMap are falling under this category.
+
+Drawback with collections : 
+
+They will not provide security to the data. 
+
+Generics : Provides an opportunity to pass data types at runtime. 
+If you want to make any methods as write once and apply for any data type, then we need the help of generics.
+Generics will be represented in <T> nontation. 
+Means, in place of <T> we can pass any data type.
+
+Advantages : 
+____________
+
+
+   -> Write once and apply for all types
+
+   -> No Typecasting required
+
+   -> Provides security to data.
+
+   -> Reduces the size of the program. 
+
+enums allows you to store group of constants. 
+
+enum obj = [
+
