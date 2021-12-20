@@ -1,0 +1,24 @@
+package com.java.agent;
+
+public class Agent {
+
+	private int agentId;
+	private String name;
+	private String city;
+	private double premium;
+	private String gender;
+}
+
+
+Perform CRUD operations, as   1) Add Agent 2) Show Agent 3) Search Agent 4) Delete Agent 5) Update Agent
+
+Validations : 
+______________
+
+	agentId cannot be negative or zero
+	name contains min 5 chars max 12 chars
+	city contains min 3 chars
+	premium from 1000 to 50000
+        gender MALE or FEMALE
+
+to be finished by 11.30 as we start with Files and Multi-Threading concept then 
