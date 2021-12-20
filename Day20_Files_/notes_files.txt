@@ -1,0 +1,82 @@
+File : 
+_______
+
+A file is a collection of data, that which allows you to store output
+permanently. To deal with files, we need the help of java.io package. 
+
+File class : This class allows you to deal with files. 
+
+File obj = new File(filename);
+
+
+FileReader : Used to read data from the file w.r.t. unicode format. 
+
+FileReader fr = new FileReader(fileName);
+
+read() : used to read data char/char and returns ascii value, it returns 
+-1 once it reaches EOF.  
+
+FileWriter : Allows you to write data into file. 
+
+FileWriter fw = new FileWriter(filename)
+
+write() : used to write data into file. 
+
+FileInputStream : Used to read data w.r.t. Stream of bytes. 
+
+FileOutputStream : Used to write data into file w.r.t. Stream of bytes. 
+
+DataOutputStream : Used to write primitive types into the file.
+
+DataOutputStream dout = new DataOutputStream(filename)
+
+writeInt()
+writeUTF()
+writeDouble()
+writeBoolean()
+
+DataInputStream : Used to read primitive types from file. 
+
+DataInputStream din = new DataInputStream(filename);
+
+readInt()
+readUTF()
+readDouble()
+readBoolean()
+
+BufferedReader : Allows you to read data from the keyboard. 
+
+BufferedReader br = new BufferedReder(new InputStreamReader(System.in));
+
+readLine() : 
+
+Used to read one line of input from keyboard. 
+
+ObjectOutputStream : Used to write Objects into the file. 
+
+ObjectOutputStream objout = new ObjectOutputStream(filename);
+
+writeObject() : used to write Objects into the file. 
+
+You can write custom objects into file, by using Serilizable interface. 
+
+Serilization is process of writing custom objects into the file. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
