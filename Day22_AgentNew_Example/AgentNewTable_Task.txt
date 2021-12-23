@@ -1,0 +1,26 @@
+drop table AgentNew;
+
+Create Table AgentNew
+(
+   agentId number,
+   name varchar2(30),
+   city varchar2(30),
+   payMode number check(paymode In(1,2,3)),
+   Premium number(9,2),
+   Installment number(9,2)
+);
+
+
+Insert into AgentNew(AgentId,name,city,paymode,premium,installment)
+values(1,'Pragati','Bangalore',1,554332,34443);
+
+Insert into AgentNew(AgentId,name,city,paymode,premium,installment)
+values(2,'Neha','Pune',3,454332,44443);
+
+Insert into AgentNew(AgentId,name,city,paymode,premium,installment)
+values(3,'Pragati','Bangalore',1,554332,34443);
+
+Insert into AgentNew(AgentId,name,city,paymode,premium,installment)
+values(4,'Sunil','Vizag',2,988843,54443);
+
+commit;
