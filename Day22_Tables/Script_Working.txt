@@ -1,0 +1,25 @@
+Create Table EmployNew
+(
+   Empno number primary key,
+   Name varchar2(30),
+   Gender varchar2(10),
+   Dept varchar2(15),
+   Desig varchar2(20),
+   Basic Number(9,2)
+);
+
+
+Insert into EmployNew(empno,name,gender,dept,desig,basic)
+values(1,'kushal','MALE','Java','Programmer',94943);
+
+Insert into EmployNew(empno,name,gender,dept,desig,basic)
+values(2,'Abhishek','MALE','Angular','Programmer',89943);
+
+Insert into EmployNew(empno,name,gender,dept,desig,basic)
+values(3,'Pragati','FEMALE','Java','Programmer',95533);
+
+Insert into EmployNew(empno,name,gender,dept,desig,basic)
+values(4,'Jemima','FEMALE','Angular','Programmer',94943);
+
+Insert into EmployNew(empno,name,gender,dept,desig,basic)
+values(6,'Hemanth','MALE','Java','Programmer',94943);
