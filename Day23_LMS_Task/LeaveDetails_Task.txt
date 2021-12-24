@@ -1,0 +1,27 @@
+Create Table LeaveDetails
+(
+   leaveId number primary key,
+   empId number,
+   leaveStartDate date,
+   leaveEndDate date,
+   leaveReason varchar2(30),
+   leaveAppliedOn date default sysdate,
+   leaveType varchar2(10) check(leaveType in('EL','PL','ML')),
+   leaveStatus varchar2(20) default 'PENDING'
+);
+
+
+Perform 
+
+AddLeave (ApplyLeave)
+
+ShowLeaves
+
+SearchLeave
+
+Validations : 
+_____________
+
+leaveStatDate cannot be yesterday's date
+leaveEndDate cannot be Yesterday's date
+leaveStartDate cannot be greater than leaveEndDate
