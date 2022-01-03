@@ -1,0 +1,28 @@
+Please start the main project now (Console Application)
+
+Restaurant : 
+____________
+
+select * from restaurant;
+
+select * from restaurant where restaurant_id=?
+
+Menu : 
+
+select * from Menu where Restaurant_id=?  
+
+select * from Menu where menu_Id=?
+
+Customer : 
+_____________
+
+select * from Customer
+
+select * from Customer where customer_id=?
+
+Vendor : 
+________
+
+select * from vendor;
+
+select * from Vendor where vendor_id=? 
