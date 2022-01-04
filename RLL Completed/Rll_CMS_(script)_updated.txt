@@ -1,0 +1,152 @@
+create table Restaurant
+(
+	RestaurantID number primary key,
+	RestaurantName varchar2(30),
+	City varchar2(30),
+	Branch varchar2(30),
+	Email varchar2(30),
+	ContactNo number
+);
+insert into Restaurant values(1,'Taj','Hyderabad','Cybercity','taj@hotmail.com',123456);
+insert into Restaurant values(2,'Alzamzam','Pune','Airport','alzamzam@gmail.com',234567);
+insert into Restaurant values(3,'Paradise','Mumbai','Bandra','Paradise@hotmail.com',646549);
+insert into Restaurant values(4,'Punjabi','Haryana','Cotton city','Punjabi@rediffmail.com',127861);
+insert into Restaurant values(5,'Whiskers','Jaipur','Viswada','whiskers@hotmail.com',763486);
+
+-------------------------------------------------------------------------------------------------------------
+
+
+create table Menu
+(
+	MenuID number primary key,
+	RestaurantID number 
+	constraint fk_Menu_RestaurantID references Restaurant(RestaurantID),
+	ItemName varchar2(30),
+	MenuType varchar(20),
+	Calories number,
+	Price number
+);
+insert into Menu values(100,1,'Chicken Biriyani','Non-Veg',300,200);
+insert into Menu values(101,2,'Pasta','Veg',100,150);
+insert into Menu values(102,4,'Ice-cream','Beverage',400,200);
+insert into Menu values(103,3,'Jeera Rice','Veg',100,150);
+insert into Menu values(104,3,'Fanta','Beverage',200,100);
+insert into Menu values(105,4,'Mutton curry','Non-Veg',400,450);
+insert into Menu values(106,2,'Noodels','Veg',250,180);
+insert into Menu values(107,4,'Mix Veg','Veg',100,300);
+insert into Menu values(108,1,'Dal Tadka','Veg',300,150);
+insert into Menu values(109,2,'Paneer kabab','Veg',400,250);
+insert into Menu values(110,3,'Maggi','Veg',200,80);
+insert into Menu values(111,3,'Coca-Cola','Beverage',200,99);
+
+
+
+------------------------------------------------------------------------------------
+
+
+create table Customer
+(
+	CustomerID number primary key,
+	CustomerName varchar2(30),
+	CustomerState varchar2(30),
+	CustomerCity varchar2(30),
+	CustomerEmail varchar2(30),
+	CustomerMobile varchar2(30)
+);
+insert into Customer values(219,'Jai','Maharashtra','Pune','Jai22@gmail.com',9986687361);
+insert into Customer values(278,'Ria','Telangana','Hyderabad','Riyaaa@gmail.com',2836617382);
+insert into Customer values(211,'Aman','Maharashtra','Mumbai','Aman123@gmail.com',9836273645);
+insert into Customer values(226,'Priya','Maharashtra','Pune','Priya@gmail.com',8362745273);
+insert into Customer values(313,'Janvi','Maharashtra','Nashik','Janvi@gmail.com',7254728173);
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------
+
+create table Vendor
+(
+	VendorID number primary key,
+	VendorName varchar2(30),
+	VendorState varchar2(30),
+	VendorCity varchar2(30),
+	VendorEmail varchar2(30),
+	VendorMobile varchar2(20)
+);
+
+insert into Vendor values(1111,'Swiggy','Maharashtra','Pune','swiggy@gmail.com',635278);
+insert into Vendor values(1212,'Zomato','Rajasthan','Jaipur','Zomato@gmail.com',638728);
+insert into Vendor values(1313,'UberEats','Maharashtra','Nashik','UberEats@gmail.com',362723);
+insert into Vendor values(1414,'Dominos','Maharashtra','Pune','Dominos@gmail.com',257357);
+insert into Vendor values(1515,'FoodPanda','Maharashtra','Mumbai','foodpanda@gmail.com',435267);
+insert into Vendor values(1616,'McDonald','Telangana','Hyderabad','McDonald@gmail.com',536789);
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+create table Orders
+(
+	OrderID number primary key,
+	VendorID number
+	constraint fk_Order_VendorID references Vendor(VendorID),
+	CustomerID number
+	constraint fk_Order_CustomerID references Customer(CustomerID),
+	MenuID number 
+	constraint fk_Order_MenuID references Menu(MenuID),
+	WalletID number
+	constraint fk_Order_WalletID references Wallet(WalletID),
+	OrderDate date,
+	QuantityOrdered number,
+	OrderStatus Varchar2(30),
+	BillAmount number,
+	Comments Varchar2(50)
+);
+
+insert into Orders values(1234,1515,219,106,7979,'24-NOV-2021',2,'Pending',360,'Spicy');
+insert into Orders values(2356,1111,226,102,6969,'20-NOV-2021',3,'Success',600,'None');
+insert into Orders values(3456,1414,278,107,9898,'18-Nov-2021',1,'Success',300,'No Onions');
+insert into Orders values(4567,1313,313,108,5959,'24-Nov-2021',1,'Pending',150,'None');
+insert into Orders values(5678,1212,226,110,6969,'15-NOV-2021',1,'Success',80,'Spicy');
+insert into Orders values(6789,1616,211,100,9898,'24-NOV-2021',1,'Pending',200,'None');
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+create table Wallet
+(
+	WalletID number primary key,
+	CustomerID number
+	constraint fk_Wallet_CustomerID references Customer(CustomerID),
+	WalletType varchar2(30),
+	Amount varchar2(30)
+);
+
+insert into Wallet values(9898,278,'Paytm',300);
+
+insert into Wallet values(7979,219,'PhonePay',360);
+
+insert into Wallet values(6969,226,'GooglePay',600);
+
+insert into Wallet values(5959,313,'Debit/Credit card',150);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
