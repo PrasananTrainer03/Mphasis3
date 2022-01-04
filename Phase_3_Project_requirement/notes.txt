@@ -26,3 +26,11 @@ ________
 select * from vendor;
 
 select * from Vendor where vendor_id=? 
+
+Wallet :
+________
+
+select * from Wallet where cust_id=?  
+
+select * from wallet where wallet_id=?
+
