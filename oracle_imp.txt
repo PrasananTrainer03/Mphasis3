@@ -1,0 +1,6 @@
+conn / as sysdba;
+create user pavan identified by pavan;
+grant connect to pavan;
+grant resource to pavan;
+grant dba to pavan;
+connect pavan/pavan;
