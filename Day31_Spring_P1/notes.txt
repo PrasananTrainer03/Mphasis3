@@ -1,0 +1,143 @@
+Spring Framework 
+___________________
+
+
+R u have any dependencies 
+
+package com.java.spr;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Person {
+
+	private int id;
+	private String name;
+	private Family family;
+	private JobDetails jobDetails;
+	List<String> idProofs = new ArrayList<>();
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Family getFamily() {
+		return family;
+	}
+	public void setFamily(Family family) {
+		this.family = family;
+	}
+	public JobDetails getJobDetails() {
+		return jobDetails;
+	}
+	public void setJobDetails(JobDetails jobDetails) {
+		this.jobDetails = jobDetails;
+	}
+	
+	
+}
+
+
+Person objKushal = new Person();
+
+objKushal.setId(1);
+objKushal.setName("Kushal");
+Family objKushalFamily = new Family;
+objKushalFamily.setFamilyName("Gowda");
+objKushalFamily.setNoOfPerson(4);
+
+objKushal.setFamily(objKushalFamily);
+
+JobDetails objKushalJob = new JobDetails();
+
+objKushalJob.setDesig("Programmer");
+objKushalJob.setCtc(9.4);
+
+objKushal.setJobDetails(objKushalJob);
+
+What is AOP
+
+What is DI (Dependency Injection) 
+
+Objects Never lookup of the resources its depending on. 
+
+Dependency Injection is feature, that which allows you bind the dependencies to object automatically 
+at runtime. 
+That is, dependencies are injected into objects. Thus lookups are completely removed from application objects and it can be used outside the container also. 
+
+public class NameBean {
+	private String firstName;
+	private String lastName;
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}	
+}
+
+NameBean obj = new NameBean();
+obj.setFirstName("Kushal");
+obj.setLastName("Gowda");
+
+The above approach a bit tedious, as for many objects static values to be loaded its highly highly tedious. 
+
+So the above problem in spring can be solved by using <bean> tag.
+
+<bean id="beanKushal" class="com.java.spr.NameBean">  
+     <property name="firstName" value="Kushal" /> 
+     <property name="lastName" value="Gowda" /> 
+</bean>
+
+Once you load the bean, the dependencies will be added to the project automatically. 
+
+
+APPLICATION CONTEXT: 
+the Application Context is spring's more advanced container. it can be used to load bean definitions, wire beans together and dispense beans upon request. 
+
+ApplicationContext ctx = new ClasspathXmlApplicationContext("xmlfile");
+
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-beans</artifactId>
+    <version>4.3.3.RELEASE</version>
+</dependency>
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context</artifactId>
+    <version>4.3.3.RELEASE</version>
+</dependency>
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-core</artifactId>
+    <version>4.3.3.RELEASE</version>
+</dependency>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
