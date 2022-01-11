@@ -1,0 +1,81 @@
+
+Hibernate 
+
+Hibernate is a java framework that which simplifies the development of java
+application to interact with database. It is a opensource, lightweight, 
+ORM (Object Relational Mapping) tool, that which implements specifications of 
+Database. 
+
+Why we call as ORM is it maps the backend tables with front-end entity classes. 
+
+Then instead of going to database, we can extract data from model class. 
+
+ORM tool simplifies the data creation, data manipulation and data 
+access. 
+
+Advantages of Hibernate
+________________________
+
+       (i) Open Source : Hibernate framework is a open source framework.
+
+      (ii) Fast Performance : As performance is fine, because we can implement various levels of cache, 
+
+		as there are 2 types of cache as first level and second level cache. 
+
+     (iii) Database Indepedent Query : 
+		
+			Hibernate have its own language known as HQL (Hibernate Query Language) that which
+		allows to extract data from entity classes. 
+
+      (iv) Automatic Table Creation : 
+		Provides feature to create tables automatically.
+
+      (v) Simplifies Complex Joins : 
+
+		Provides various syntaxes to join entities.
+
+     
+
+Hibernate architecture categorized in 4 layers. 
+
+
+    -> Java Application Layer
+
+    -> Hibernate Framework Layer
+
+    -> Backhand api Layer
+
+    -> Database Layer
+
+To accomplish the above things, we have various elements in hibernate architecture as 
+
+-> SessionFactory
+
+	Is a factory of session and client of ConnectionProvieder. It holds the 2nd level cache of data.
+	It comes with org.hibernate.SessionFactory interface
+
+-> Session 
+
+The object provides an interface between the application and data stored in database. It is a short-lived object and wraps the JDBC connection. It is a factory of Transaction, Query and Criteria. 
+
+-> Transaction
+
+	Provides an operational tasks w.r.t. database. it comes with org.hibernate.Transaction package. 
+
+First, you need to define all necessary connectionstring information in 
+hibernate.cfg.xml file. 
+
+               <dependency>
+    <groupId>com.oracle.ojdbc</groupId>
+    <artifactId>ojdbc8</artifactId>
+    <version>19.3.0.0</version>
+</dependency>
+     <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.3.5.Final</version>
+        </dependency>
+
+
+
+
