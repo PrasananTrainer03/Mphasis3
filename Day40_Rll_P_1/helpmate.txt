@@ -1,0 +1,153 @@
+npm install rxjs-compat --save
+
+Now we need to call the restaurant service 
+
+as it is in 
+
+http://localhost:8181/showRestaurant
+
+this is data
+
+[{"rid":1,"rname":"Taj","branch":"Cybercity","contactNo":"123456","city":"Hyderabad","email":"taj@hotmail.com"},{"rid":2,"rname":"Alzamzam","branch":"Airport","contactNo":"234567","city":"Pune","email":"alzamzam@gmail.com"},{"rid":3,"rname":"Paradise","branch":"Bandra","contactNo":"646549","city":"Mumbai","email":"Paradise@hotmail.com"},{"rid":4,"rname":"Punjabi","branch":"Cotton city","contactNo":"127861","city":"Haryana","email":"Punjabi@rediffmail.com"},{"rid":5,"rname":"Whiskers","branch":"Viswada","contactNo":"763486","city":"Jaipur","email":"whiskers@hotmail.com"}]
+
+
+Need to create service in angular 
+
+Step 1 : 
+
+open app.module.ts file and import HttpClient as 
+
+import {HttpClientModule} from '@angular/common/http';
+
+
+imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule
+  ],
+
+Step 2 : 
+
+create a class as 
+
+ng g class Restaurant 
+
+in that write the below code (note json key and field name in class must be same)
+
+
+export class Restaurant {
+
+    public rid : number;
+    public rname : string;
+    public branch : string;
+    public contactNo : string;
+    public city : string;
+    public email : string;
+    constructor() {
+
+    }
+}
+
+
+Step 3 : *** It is heart for angular service 
+
+Create a service as Restaurant as 
+
+ng g service Restaurant 
+
+and write the below code and change url accordingly 
+
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError, tap, map } from 'rxjs/operators';
+import { Restaurant } from './restaurant';
+@Injectable({
+  providedIn: 'root'
+})
+export class RestaurantService {
+
+  constructor(private _http: HttpClient) { }
+
+  showRestaurant(): Observable<Restaurant []> {
+    return this._http.get<Restaurant []>("http://localhost:8181/showRestaurant")
+      .pipe(
+        tap(data =>
+        console.log('All: ' + JSON.stringify(data)))
+      );
+  }
+}
+
+
+Step 4 : 
+
+Create a component as 
+
+ng g c RestaurantShow
+
+and call the service in RestaurantShow.component.ts file as
+
+export class RestaurantShowComponent implements OnInit {
+
+  restaurants : Restaurant[];
+  constructor(private _restaurantService :RestaurantService) {
+    this._restaurantService.showRestaurant().subscribe({
+      next: rs =>{
+        this.restaurants = rs;
+      }
+    })
+   }
+
+
+import { Restaurant } from '../restaurant';
+import { RestaurantService } from '../restaurant.service';
+
+Write the above things 
+
+Step 5 : 
+
+Need to call in ur UI as in RestaurantShow.html file write the below code 
+
+<p>restaurant-show works!</p>
+<table border="3" align="center">
+    <tr>
+        <th>Restaurant ID</th>
+        <th>Restaurant Name</th>
+        <th>Branch</th>
+        <th>Contact Number</th>
+        <th>City</th>
+        <th>Email</th>
+    </tr>
+    <tr *ngFor="let r of restaurants">
+        <td>{{r.rid}} </td>
+        <td>{{r.rname}} </td>
+        <td>{{r.branch}} </td>
+        <td>{{r.contactNo}} </td>
+        <td>{{r.city}} </td>
+        <td>{{r.email}} </td>
+    </tr>
+</table>
+
+
+Step 6 : 
+
+Need to call this component in app.component.html file as
+
+copy the selector of RestaurantShow component and place in html tags of app.component.html as 
+
+<app-restaurant-show></app-restaurant-show>
+
+You can start applicaiton as
+
+npm start
+
+then it runs in 4200 port 
+
+________________________________________________________________________________
+
+Finish
+
+ShowCustomer
+
+ShowVendor 
+
