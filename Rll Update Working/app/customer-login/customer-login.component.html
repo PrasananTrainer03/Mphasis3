@@ -1,0 +1,14 @@
+<p>customer-login works!</p>
+
+<form (ngSubmit)="logMe()">
+    Select Customer Name : 
+    <select [(ngModel)]="custId" name="custId">
+        <option *ngFor="let c of customers" value={{c.customerid}}>
+            {{c.customername}}
+        </option>
+    </select> <br/><br/> 
+    Password : 
+    <input type="password" name="passWord" [(ngModel)]="passCode" /> 
+    <br/><br/> 
+    <input type="submit" value="Login" />
+</form>
