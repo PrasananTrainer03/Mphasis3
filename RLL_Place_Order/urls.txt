@@ -1,0 +1,17 @@
+http://localhost:8181/customer
+http://localhost:8181/customer/219
+http://localhost:8181/vendors
+
+http://localhost:8181/vendorSearch/1111
+http://localhost:8181/showRestaurant
+http://localhost:8181/1
+
+http://localhost:8181/showMenu/1
+http://localhost:8181/search/100
+
+http://localhost:8181/showAllWallets/219
+http://localhost:8181/searchByWalletId/6969
+
+http://localhost:8181/orders/placeOrder
+http://localhost:8181/acceptOrRejectOrder/6791/1111/YES
+
